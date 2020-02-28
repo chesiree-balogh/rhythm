@@ -5,10 +5,6 @@ namespace rhythm.Models
 {
   public class Band
   {
-    public List<Album> Albums { get; set; } = new List<Album>();
-
-
-
     public int Id { get; set; }
     public string BandName { get; set; }
     public string CountryOfOrigin { get; set; }
@@ -18,6 +14,9 @@ namespace rhythm.Models
     public bool IsSigned { get; set; } = true;
     public string PersonOfContact { get; set; }
     public string ContactPhoneNumber { get; set; }
+
+
+    public List<Album> Albums { get; set; } = new List<Album>();
   }
 
 }

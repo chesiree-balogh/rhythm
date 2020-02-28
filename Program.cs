@@ -64,25 +64,26 @@ namespace rhythm
             newBand.BandName = Console.ReadLine().ToLower();
 
             Console.WriteLine($"What country are they from?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.CountryOfOrigin = Console.ReadLine().ToLower();
 
             Console.WriteLine($"How many band members are there?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.NumberOfMembers = Console.ReadLine().ToLower();
 
             Console.WriteLine($"Whats their website?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.Website = Console.ReadLine().ToLower();
 
             Console.WriteLine($"Whats their music style?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.Style = Console.ReadLine().ToLower();
 
-            Console.WriteLine($"Are they signed?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            Console.WriteLine($"Are they signed, (True) or (False)?");
+            newBand.IsSigned = bool.Parse(Console.ReadLine().ToLower());
 
             Console.WriteLine($"Person of contact?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.PersonOfContact = Console.ReadLine().ToLower();
 
             Console.WriteLine($"Contact phone number?");
-            newBand.BandName = Console.ReadLine().ToLower();
+            newBand.ContactPhoneNumber = Console.ReadLine().ToLower();
+            db.Bands.Add(newBand);
             db.SaveChanges();
           }
 
@@ -92,24 +93,36 @@ namespace rhythm
 
           // }
 
-          // else if (input == "l")
-          // {
+          else if (input == "l")
+          {
+            Console.WriteLine($"Which band name would you like to un-sign?");
+            var unSign = Console.ReadLine().ToLower();
 
-          // }
+            var bandToRemove = db.Bands.FirstOrDefault(band => band.BandName == unSign);
+            bandToRemove.IsSigned = false;
+            db.SaveChanges();
+          }
 
-          // else if (input == "r")
-          // {
 
-          // }
+          //
+          else if (input == "r")
+          {
+            Console.WriteLine($"Which band name would you like to re-sign?");
+            var reSign = Console.ReadLine().ToLower();
+
+            var bandToReSign = db.Bands.FirstOrDefault(band => band.BandName == reSign);
+            bandToReSign.IsSigned = true;
+            db.SaveChanges();
+          }
 
           // else if (input == "v")
           // {
 
           // }
-          // else if (input == "q")
-          // {
-          //   isRunning = false;
-          // }
+          else if (input == "q")
+          {
+            isRunning = false;
+          }
         }
       }
     }
