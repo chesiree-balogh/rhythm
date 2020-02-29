@@ -49,6 +49,7 @@ namespace rhythm
 
         var newBand = new Band();
         var newAlbum = new Album();
+        var newSong = new Song();
 
         var isRunning = true;
         while (isRunning)
@@ -111,10 +112,26 @@ namespace rhythm
               db.Albums.Add(newAlbum);
               db.SaveChanges();
             }
-            // else if (whatToProduce = "s")
-            // {
+            else if (whatToProduce == "s")
+            {
+              Console.WriteLine($"Which album ID does this song belong to?");
+              newSong.AlbumId = int.Parse(Console.ReadLine().ToLower());
 
-            // }
+              Console.WriteLine($"What is the song title?");
+              newSong.Title = Console.ReadLine().ToLower();
+
+              Console.WriteLine($"What are some lyrics?");
+              newSong.Lyrics = Console.ReadLine().ToLower();
+
+              Console.WriteLine($"How long is the song?");
+              newSong.Length = Console.ReadLine().ToLower();
+
+              Console.WriteLine($"What is the genre?");
+              newSong.Genre = Console.ReadLine().ToLower();
+
+              db.Songs.Add(newSong);
+              db.SaveChanges();
+            }
           }
 
           else if (input == "l")
