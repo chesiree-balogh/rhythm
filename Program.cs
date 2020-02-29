@@ -45,8 +45,10 @@ namespace rhythm
 
       {
         Console.WriteLine("Welcome to Rhythm!");
-        var newBand = new Band();
         PopulateDatabase();
+
+        var newBand = new Band();
+        var newAlbum = new Album();
 
         var isRunning = true;
         while (isRunning)
@@ -55,7 +57,7 @@ namespace rhythm
 
 
           Console.WriteLine($"Which would you like to do?");
-          Console.WriteLine($"Add a (B)and, Add a (A)lbum, (L)et a band go, (R)esign a band, (V)iew, or (Q)uit");
+          Console.WriteLine($"Add a (B)and, (P)roduce, (L)et a band go, (R)esign a band, (V)iew, or (Q)uit");
           var input = Console.ReadLine().ToLower();
 
           if (input == "b")
@@ -88,10 +90,32 @@ namespace rhythm
           }
 
 
-          // else if (input == "a")
-          // {
+          else if (input == "p")
+          {
+            Console.WriteLine($"What would you like to produce: A (A)lbum or a (S)ong?");
+            var whatToProduce = Console.ReadLine().ToLower();
+            if (whatToProduce == "a")
+            {
+              Console.WriteLine($"Which band ID produced this album?");
+              newAlbum.BandId = int.Parse(Console.ReadLine().ToLower());
 
-          // }
+              Console.WriteLine($"Whats the album title?");
+              newAlbum.Title = Console.ReadLine().ToLower();
+
+              Console.WriteLine($"Is it explicit, (True) or (False)?");
+              newAlbum.IsExplicit = bool.Parse(Console.ReadLine().ToLower());
+
+              Console.WriteLine($"When was it released?");
+              newAlbum.ReleaseDate = DateTime.Parse(Console.ReadLine());
+
+              db.Albums.Add(newAlbum);
+              db.SaveChanges();
+            }
+            // else if (whatToProduce = "s")
+            // {
+
+            // }
+          }
 
           else if (input == "l")
           {
@@ -104,7 +128,6 @@ namespace rhythm
           }
 
 
-          //
           else if (input == "r")
           {
             Console.WriteLine($"Which band name would you like to re-sign?");

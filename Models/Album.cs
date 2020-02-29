@@ -11,6 +11,7 @@ namespace rhythm.Models
     public DateTime ReleaseDate { get; set; }
     public int BandId { get; set; }
     public Band Band { get; set; }
+
     public List<Song> Song { get; set; } = new List<Song>();
   }
 }

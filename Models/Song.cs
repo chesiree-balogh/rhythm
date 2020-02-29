@@ -9,6 +9,7 @@ namespace rhythm.Models
     public string Length { get; set; }
     public string Genre { get; set; }
     public int AlbumId { get; set; }
+
     public Album Album { get; set; }
 
   }
