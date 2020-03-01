@@ -102,6 +102,11 @@ namespace rhythm
             if (whatToProduce == "a")
             {
               //add list of current bands with band id's
+              var listBandsWithId = db.Bands.OrderBy(b => b.Id);
+              foreach (var listBand in listBandsWithId)
+              {
+                Console.WriteLine($" {listBand.Id} : {listBand.BandName}");
+              }
 
               Console.WriteLine($"Which band ID produced this album?");
               newAlbum.BandId = int.Parse(Console.ReadLine().ToLower());
@@ -121,6 +126,11 @@ namespace rhythm
             else if (whatToProduce == "s")
             {
               //add list of current albums with album id's
+              var viewCurrentAlbums = db.Albums.OrderBy(a => a.Id);
+              foreach (var listAlbums in viewCurrentAlbums)
+              {
+                Console.WriteLine($" {listAlbums.Id} : {listAlbums.Title}");
+              }
 
               Console.WriteLine($"Which album ID does this song belong to?");
               newSong.AlbumId = int.Parse(Console.ReadLine().ToLower());
@@ -146,6 +156,12 @@ namespace rhythm
           else if (input == "l")
           {
             //list of current signed bands
+            var currentlySigned = db.Bands.OrderBy(b => b.IsSigned == true);
+            Console.WriteLine($"Currently signed bands:");
+            foreach (var signed in currentlySigned)
+            {
+              Console.WriteLine($"{signed.BandName}");
+            }
 
             Console.WriteLine($"Which band name would you like to un-sign?");
             var unSign = Console.ReadLine().ToLower();
@@ -159,6 +175,13 @@ namespace rhythm
           else if (input == "r")
           {
             //list of current unsigned bands
+            var currentlyUnSigned = db.Bands.OrderBy(b => b.IsSigned == false);
+            Console.WriteLine($"Current un-signed bands:");
+            foreach (var unsigned in currentlyUnSigned)
+            {
+              Console.WriteLine($"{unsigned.BandName}");
+            }
+
 
             Console.WriteLine($"Which band name would you like to re-sign?");
             var reSign = Console.ReadLine().ToLower();
@@ -179,6 +202,11 @@ namespace rhythm
             //view all albums for a band
             if (viewInput == "band")
             {
+              var listBandNames = db.Bands.OrderBy(b => b.BandName);
+              foreach (var listBand in listBandNames)
+              {
+                Console.WriteLine($"{listBand.BandName}");
+              }
               Console.WriteLine($"Which bands albums would you like to see?");
               var whichBand = Console.ReadLine().ToLower();
 
@@ -203,6 +231,12 @@ namespace rhythm
             // //view all of a albums song
             else if (viewInput == "songs")
             {
+              var currentAlbums = db.Albums.OrderBy(a => a.Title);
+              foreach (var listAlbums in currentAlbums)
+              {
+                Console.WriteLine($" {listAlbums.Title}");
+              }
+
               Console.WriteLine($"Which album would you like to view list of songs from?");
               var whichAlbum = Console.ReadLine().ToLower();
 
