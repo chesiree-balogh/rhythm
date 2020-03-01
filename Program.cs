@@ -156,7 +156,7 @@ namespace rhythm
           else if (input == "l")
           {
             //list of current signed bands
-            var currentlySigned = db.Bands.OrderBy(b => b.IsSigned == true);
+            var currentlySigned = db.Bands.Where(b => b.IsSigned == true);
             Console.WriteLine($"Currently signed bands:");
             foreach (var signed in currentlySigned)
             {
@@ -175,7 +175,7 @@ namespace rhythm
           else if (input == "r")
           {
             //list of current unsigned bands
-            var currentlyUnSigned = db.Bands.OrderBy(b => b.IsSigned == false);
+            var currentlyUnSigned = db.Bands.Where(b => b.IsSigned == false);
             Console.WriteLine($"Current un-signed bands:");
             foreach (var unsigned in currentlyUnSigned)
             {
